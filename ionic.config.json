@@ -1,0 +1,7 @@
+{
+  "name": "cabgo",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "vue"
+}
