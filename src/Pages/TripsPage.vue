@@ -10,14 +10,18 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">CabGo Home</ion-title>
-        </ion-toolbar>
+      <ion-header>
+         <ion-list>
+          <ion-item class="item-active">
+            <router-link to="#"><ion-label>Past</ion-label></router-link>
+          </ion-item>
+          <ion-item>
+            <router-link to="/trips-upcoming"><ion-label>Upcoming</ion-label></router-link>
+          </ion-item>
+        </ion-list>
       </ion-header>
-    
-      <div id="container">
-        Trips
+      <div>
+
       </div>
     </ion-content>
   </ion-page>
@@ -25,7 +29,9 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar,
+         IonLabel, IonList, IonItem
+          } from '@ionic/vue';
 
 export default defineComponent({
   name: 'FolderPage',
@@ -36,7 +42,11 @@ export default defineComponent({
     IonMenuButton,
     IonPage,
     IonTitle,
-    IonToolbar
+    IonToolbar,
+    IonLabel, 
+    IonList, 
+    IonItem
+    
   }
 });
 </script>
@@ -65,5 +75,18 @@ export default defineComponent({
 
 #container a {
   text-decoration: none;
+}
+ion-list{
+  width: 100%;
+  display: flex;
+}
+
+ion-list ion-item{
+  width: 50%;
+border-bottom: solid 2px #8c8c8c;
+}
+ion-item.item-active{
+  border-bottom: solid 2px #3880ff;
+  color: #3880ff;
 }
 </style>

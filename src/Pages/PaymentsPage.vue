@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-     <ion-header :translucent="true">
+    <ion-header :translucent="true">
       <ion-toolbar>
         <ion-buttons slot="start">
           <ion-menu-button color="primary"></ion-menu-button>
@@ -10,10 +10,14 @@
     </ion-header>
     
     <ion-content :fullscreen="true">
-    
+      <ion-header collapse="condense">
+        <ion-toolbar>
+          <ion-title size="large">CabGo Home</ion-title>
+        </ion-toolbar>
+      </ion-header>
     
       <div id="container">
-        Home
+        
       </div>
     </ion-content>
   </ion-page>

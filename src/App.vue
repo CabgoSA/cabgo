@@ -4,8 +4,13 @@
       <ion-menu content-id="main-content" type="overlay">
         <ion-content>
           <ion-list id="inbox-list">
-            <ion-list-header>Inbox</ion-list-header>
-            <ion-note>hi@ionicframework.com</ion-note>
+            <ion-item>
+              <ion-avatar slot="start">
+                <img src="http://cabgo.co.za/uploads/772a0d10d50275d90eb66a74dae0db194ee4ea65.jpg">
+               </ion-avatar>
+              <ion-label>Cab Go Passenger</ion-label>
+             </ion-item>
+            
   
             <ion-menu-toggle auto-hide="false" v-for="(p, i) in appPages" :key="i">
               <ion-item @click="selectedIndex = i" router-direction="root" :router-link="p.url" lines="none" detail="false" class="hydrated" :class="{ selected: selectedIndex === i }">
@@ -15,14 +20,6 @@
             </ion-menu-toggle>
           </ion-list>
   
-          <ion-list id="labels-list">
-            <ion-list-header>Labels</ion-list-header>
-  
-            <ion-item v-for="(label, index) in labels" lines="none" :key="index">
-              <ion-icon slot="start" :ios="bookmarkOutline" :md="bookmarkSharp"></ion-icon>
-              <ion-label>{{ label }}</ion-label>
-            </ion-item>
-          </ion-list>
         </ion-content>
       </ion-menu>
       <ion-router-outlet id="main-content"></ion-router-outlet>
@@ -31,7 +28,7 @@
 </template>
 
 <script lang="ts">
-import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonListHeader, IonMenu, IonMenuToggle, IonNote, IonRouterOutlet, IonSplitPane } from '@ionic/vue';
+import { IonApp, IonContent, IonIcon, IonItem, IonLabel, IonList, IonMenu, IonMenuToggle, IonRouterOutlet, IonSplitPane,IonAvatar } from '@ionic/vue';
 import { defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import { archiveOutline, archiveSharp, bookmarkOutline, bookmarkSharp, heartOutline, heartSharp, mailOutline, mailSharp, paperPlaneOutline, paperPlaneSharp, trashOutline, trashSharp, warningOutline, warningSharp } from 'ionicons/icons';
@@ -44,13 +41,12 @@ export default defineComponent({
     IonIcon, 
     IonItem, 
     IonLabel, 
-    IonList, 
-    IonListHeader, 
+    IonList,  
     IonMenu, 
-    IonMenuToggle, 
-    IonNote, 
+    IonMenuToggle,
     IonRouterOutlet, 
     IonSplitPane,
+    IonAvatar,
   },
   setup() {
     const selectedIndex = ref(0);
@@ -62,39 +58,76 @@ export default defineComponent({
         mdIcon: mailSharp
       },
       {
+        title: 'Payments',
+        url: '/payments',
+        iosIcon: mailOutline,
+        mdIcon: mailSharp
+      },
+      {
         title: 'My Trips',
         url: '/trips',
         iosIcon: paperPlaneOutline,
         mdIcon: paperPlaneSharp
       },
       {
-        title: 'Favorites',
-        url: '/folder/Favorites',
-        iosIcon: heartOutline,
-        mdIcon: heartSharp
+        title: 'Offers',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
       },
       {
-        title: 'Archived',
-        url: '/folder/Archived',
-        iosIcon: archiveOutline,
-        mdIcon: archiveSharp
+        title: 'Wallet',
+        url: '/wallet',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
       },
       {
-        title: 'Trash',
-        url: '/folder/Trash',
-        iosIcon: trashOutline,
-        mdIcon: trashSharp
+        title: 'Passbook',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
       },
       {
-        title: 'Spam',
-        url: '/folder/Spam',
-        iosIcon: warningOutline,
-        mdIcon: warningSharp
-      }
+        title: 'Settings',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      {
+        title: 'Settings',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      {
+        title: 'Help',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      {
+        title: 'Share',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      {
+        title: 'Become a driver',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      {
+        title: 'logout',
+        url: '/trips',
+        iosIcon: paperPlaneOutline,
+        mdIcon: paperPlaneSharp
+      },
+      
     ];
-    const labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+   
     
-    const path = window.location.pathname.split('folder/')[1];
+    const path = window.location.pathname.split('/')[1];
     if (path !== undefined) {
       selectedIndex.value = appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
     }
@@ -104,7 +137,6 @@ export default defineComponent({
     return { 
       selectedIndex,
       appPages, 
-      labels,
       archiveOutline, 
       archiveSharp, 
       bookmarkOutline, 
